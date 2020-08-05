@@ -42,3 +42,9 @@ great way to reset accidental commits and revert to previous versions
 git stash: Discard all local changes, but save them for possible re-use later
 git checkout -- <file>: Discarding local changes (permanently) to a file
 git reset --hard: Discard all local changes to all files permanently
+
+
+-- STEPS TO INITIALISE NEW GIT --
+1. git init
+2. git add --all
+3. git commit -m "initial commit"
