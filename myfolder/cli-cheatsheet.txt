@@ -51,6 +51,8 @@ git reset --hard: Discard all local changes to all files permanently
 
 -- GENERAL STEPS --
 1. git add
+1.1 git add . <-- add all files that has been changed
 2. git commit -m "message"
 3. git push
-git
+
+
