@@ -55,4 +55,5 @@ git reset --hard: Discard all local changes to all files permanently
 2. git commit -m "message"
 3. git push
 
-
+-- DISPLAYING URL ORIGIN OF REPO --
+1. git remote -v
