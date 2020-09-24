@@ -49,6 +49,9 @@ git reset --hard: Discard all local changes to all files permanently
 2. git add --all
 3. git commit -m "initial commit"
 
+-- LINKING INITIALISED GIT TO A URL (for eg heroku) --
+1. git remote add heroku https://git.heroku.com/my-new-app.git
+
 -- GENERAL STEPS --
 1. git add
 1.1 git add . <-- add all files that has been changed
