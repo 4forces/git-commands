@@ -43,6 +43,9 @@ git stash: Discard all local changes, but save them for possible re-use later
 git checkout -- <file>: Discarding local changes (permanently) to a file
 git reset --hard: Discard all local changes to all files permanently
 
+-- STOP TRACKING FILE
+git rm -r --cached <filename.file>: git removes tracking of filename.file (for good)
+
 
 -- STEPS TO INITIALISE NEW GIT --
 1. git init
@@ -60,3 +63,7 @@ git reset --hard: Discard all local changes to all files permanently
 
 -- DISPLAYING URL ORIGIN OF REPO --
 1. git remote -v
+
+
+-- ADDING FILES TO GITIGNORE --
+echo '*.sql' >> .gitignore
