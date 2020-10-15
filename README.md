@@ -1,6 +1,82 @@
+# Git and CLI Commands (from Code Institute LMS)
+
+## Git Commands
+
+### GENERAL STEPS
+1. git add
+   - `git add .`: add all files that has been changed
+2. `git commit -m "message"`
+3. `git push`
+
+### STAGING
+1. `git add hello.txt`: stages hello.txt
+
+### REMOVE FROM STAGING
+1. `git rm --cached password.txt`: remove password.txt from staging
+
+### SHOW DIFFERENCE BEFORE AND AFTER STATE
+1. `git diff story.txt`: shows the difference between the "before" abd "after" state of story.txt file.
+
+### SHOW COMMIT HISTORY
+1. `git log`: shows commit history
+
+### RETURN TO COMMIT STATE:
+1. `git reset --hard f27e1c`: discard local changes and resets file to version/state at SHA "f27e1c"
+great way to reset accidental commits and revert to previous versions
+
+### DISCARDING CHANGES
+1. `git stash`: Discard all local changes, but save them for possible re-use later
+2. `git checkout -- <file>`: Discarding local changes (permanently) to a file
+3. `git reset --hard`: Discard all local changes to all files permanently
+
+### STOP TRACKING FILE
+1. `git rm -r --cached <filename.file>`: git removes tracking of filename.file (for good)
+
+### STEPS TO INITIALISE NEW GIT
+1. `git init`
+2. `git add --all`
+3. `git commit -m "initial commit"`
+
+### LINKING INITIALISED GIT TO A URL (for eg heroku)
+1. `git remote add heroku https://git.heroku.com/my-new-app.git`
+
+### DISPLAYING URL ORIGIN OF REPO
+1. `git remote -v`
+
+### ADDING FILES TO GITIGNORE
+1. `echo '*.sql' >> .gitignore`
+
+---
+
+## Unix Command Line Interface (CLI)
+
+1. `pwd`: print working directory
+2. `history`: show history of past commands
+    - `!5`: runs steps 5 in history list
+4. `cd ..` : chg directory
+
+5. `touch hello.txt`: create file hello.tx
+   -  `echo "hello!" >> hello.txt`: write "hello!" into hello.txt
+5. `ls`: list files
+   - `ls hello/` : list files in hello directory
+6. `rm hello.txt`: delete hello.txt
+7. `mkdir hello`: create new directory named hello
+8. `cp hello.txt hello`: copy hello.txt to hello directory
+9. `cp hello.txt world.txt`: copy hello.txt and rename it as world.txt
+10. `mv world.txt hello`: move world.txt to hello directory
+11. `rm -rf hello`: remove folder "hello" and its contents
+
+12. `nano hello.txt`: opens hello.txt with file editor 
+13. `cat hello.txt`: prints contents of hello.txt to command line
+14. `**`diff hello.txt world.txt`**`: compares both txt files
+   - *1d0* = line 1 in file 1, (need to) delete, to match line 0 in file 2
+   - *1c1* = line 1 in file 1, (need to) change, to match line 1 in file 2
+
+---
+
 <img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
 
-Welcome USER_NAME,
+Welcome 4forces,
 
 This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
 
