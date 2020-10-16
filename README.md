@@ -33,9 +33,11 @@ great way to reset accidental commits and revert to previous versions
 1. `git rm -r --cached <filename.file>`: git removes tracking of filename.file (for good)
 
 ### STEPS TO INITIALISE NEW GIT
-1. `git init`
-2. `git add --all`
-3. `git commit -m "initial commit"`
+1. `git init`: to create local git repo
+2. `git add --all`: to add files to staging area
+3. `git commit -m "initial commit"`: commit added files.
+4. `git remote add origin https://github.com/4forces/repo`: to link the local to remote repo
+5. `git push origin master`: to push the committed files to master branch @ remote repo
 
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
