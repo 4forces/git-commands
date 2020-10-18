@@ -13,6 +13,8 @@
 
 ### REMOVE FROM STAGING
 1. `git rm --cached password.txt`: remove password.txt from staging
+- [Difference of "git rm --cached x” vs “git reset head -- x](https://stackoverflow.com/questions/5798930/git-rm-cached-x-vs-git-reset-head-x/5800164#5800164)
+
 
 ### SHOW DIFFERENCE BEFORE AND AFTER STATE
 1. `git diff story.txt`: shows the difference between the "before" abd "after" state of story.txt file.
@@ -47,6 +49,11 @@ great way to reset accidental commits and revert to previous versions
 
 ### ADDING FILES TO GITIGNORE
 1. `echo '*.sql' >> .gitignore`
+
+### About Git Links
+1. [The Git Fork-Branch-Pull Workflow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
+2. [Just git reset and push when you need to undo previous local commits](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-a-git-reset-and-push-to-remote-works-on-previous-local-commits)
+3. [Using Git in a team: a cheatsheet](https://jameschambers.co/git-team-workflow-cheatsheet/)
 
 ---
 
