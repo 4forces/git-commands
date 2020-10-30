@@ -81,6 +81,7 @@ great way to reset accidental commits and revert to previous versions
    - *1d0* = line 1 in file 1, (need to) delete, to match line 0 (in file 2)
    - *1c1* = line 1 in file 1, (need to) change, to match line 1 (in file 2)
 15. `clear`: clears console screen
+16. `df`: shows disk space
 
 ---
 
