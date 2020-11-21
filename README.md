@@ -51,9 +51,10 @@ great way to reset accidental commits and revert to previous versions
 ### SWITCHING BRANCH
 1. `git checkout <branch1>`: Switch to <branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/)
 
-### PULLING FROM A BRANCH
-1. `git fetch upstream`
+### FETCHING FROM A BRANCH (DIFFERENT FROM PULLING)
+1. `git fetch <branch>`
 2. `git checkout <branch-name>`
+3. More about git fetch [here](https://www.atlassian.com/git/tutorials/syncing/git-fetch#:~:text=The%20git%20fetch%20command%20downloads,else%20has%20been%20working%20on.&text=When%20downloading%20content%20from%20a,available%20to%20accomplish%20the%20task.)
 
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
