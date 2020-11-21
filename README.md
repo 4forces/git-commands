@@ -45,6 +45,10 @@ great way to reset accidental commits and revert to previous versions
 ### CREATING A BRANCH
 1. `git checkout -b <branch-name>`: Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
+### GET LATEST CHECKPOINT (branch name CHECKPOINT)
+1. `git fetch upstream`
+2. `git checkout checkpointX`: (where X is the checkpoint number)
+
 ### PUSHING TO A BRANCH
 1. `git push --set-upstream origin <branch-name>`: Pushing to <branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 
