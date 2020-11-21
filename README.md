@@ -42,11 +42,11 @@ great way to reset accidental commits and revert to previous versions
 5. `git push origin master`: to push the committed files to master branch @ remote repo
 6. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
-### Branching from master
+### BRANCHING FROM MASTER
 1. `git push --set-upstream- origin <branch-name>`: Branching from 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 
 
-### Pulling from a branch
+### PULLING FROM A BRANCH
 1. `git fetch upstream`
 2. `git checkout <branch-name>`
 
