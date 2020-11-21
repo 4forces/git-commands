@@ -40,6 +40,7 @@ great way to reset accidental commits and revert to previous versions
 3. `git commit -m "initial commit"`: commit added files.
 4. `git remote add origin https://github.com/4forces/repo`: to link the local to remote repo
 5. `git push origin master`: to push the committed files to master branch @ remote repo
+6. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
