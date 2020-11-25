@@ -82,11 +82,13 @@ great way to reset accidental commits and revert to previous versions
 2. `history`: show history of past commands
     - `!5`: runs steps 5 in history list
 4. `cd ..` : chg directory
-
+   - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
+   - `cd -`: up one directory level
 5. `touch hello.txt`: create file hello.tx
    -  `echo "hello!" >> hello.txt`: write "hello!" into hello.txt
 5. `ls`: list files
    - `ls hello/` : list files in hello directory
+   - `ls -la`: list all
 6. `rm hello.txt`: delete hello.txt
 7. `mkdir hello`: create new directory named hello
 8. `cp hello.txt hello`: copy hello.txt to hello directory
@@ -103,3 +105,7 @@ great way to reset accidental commits and revert to previous versions
 16. `df`: shows disk space
 
 ---
+
+
+## Gitpod
+
