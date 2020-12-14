@@ -88,7 +88,7 @@ great way to reset accidental commits and revert to previous versions
    -  `echo "hello!" >> hello.txt`: write "hello!" into hello.txt
 5. `ls`: list files
    - `ls hello/` : list files in hello directory
-   = `ls-l`: list files in 'list' format
+   - `ls-l`: list files in 'list' format
    - `ls -la`: list all
 6. `rm hello.txt`: delete hello.txt
 7. `mkdir hello`: create new directory named hello
