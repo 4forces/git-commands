@@ -52,6 +52,9 @@ great way to reset accidental commits and revert to previous versions
 ### PUSHING TO A BRANCH
 1. `git push --set-upstream origin <branch-name>`: Pushing to <branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 
+### CHECKING CURRENT BRANCH
+1. `git branch`: Shows list of branches on repo, and points to current branch
+
 ### SWITCHING BRANCH
 1. `git checkout <branch1>`: Switch to <branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/)
 
