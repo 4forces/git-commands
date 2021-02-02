@@ -34,6 +34,15 @@ great way to reset accidental commits and revert to previous versions
 ### STOP TRACKING FILE
 1. `git rm -r --cached <filename.file>`: git removes tracking of filename.file (for good)
 
+## CLONE FROM SOMEONE'S REPOSITORY
+1. Open terminal (in VS Code)
+2. Navigate to desired Project-folder
+3. Type `git clone https://github.com/<someone's-user-name>/<repo-name>` - Files will be downloaded to project folder
+4. Open project folder in VS Code
+5. Rename someone's repo (origin) to 'upstream' (or a suitable name), to maintain link to orignal repo: `git remote rename origin upstream`
+6. Point origin to own repo: `git remote add origin http://github.com/<own-user-name>/<repo_name>`
+More [here](https://stackoverflow.com/questions/18200248/cloning-a-repo-from-someone-elses-github-and-pushing-it-to-a-repo-on-my-github)
+
 ### STEPS TO INITIALISE NEW GIT
 1. `git init`: to create local git repo
 2. `git add --all`: to add files to staging area
