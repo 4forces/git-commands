@@ -44,12 +44,17 @@ great way to reset accidental commits and revert to previous versions
 More [here](https://stackoverflow.com/questions/18200248/cloning-a-repo-from-someone-elses-github-and-pushing-it-to-a-repo-on-my-github)
 
 ### STEPS TO INITIALISE NEW GIT
-1. `git init`: to create local git repo
-2. `git add --all`: to add files to staging area
-3. `git commit -m "initial commit"`: commit added files.
-4. `git remote add origin https://github.com/4forces/repo`: to link the local to remote repo
-5. `git push origin master`: to push the committed files to master branch @ remote repo
-6. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
+1. Run the following commands first to set your account's default identity:
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+2. `git init`: to create local git repo
+3. `git add --all`: to add files to staging area
+4. `git commit -m "initial commit"`: commit added files.
+5. `git remote add origin https://github.com/4forces/repo`: to link the local to remote repo
+6. `git push origin master`: to push the committed files to master branch @ remote repo
+7. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
 ### CREATING A BRANCH
 1. `git checkout -b <branch-name>`: Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
