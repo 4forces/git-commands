@@ -34,7 +34,7 @@ great way to reset accidental commits and revert to previous versions
 ### STOP TRACKING FILE
 1. `git rm -r --cached <filename.file>`: git removes tracking of filename.file (for good)
 
-## CLONE FROM SOMEONE'S REPOSITORY
+### CLONE FROM SOMEONE'S REPOSITORY
 1. Open terminal (in VS Code)
 2. Navigate to desired Project-folder
 3. Type `git clone https://github.com/<someone's-user-name>/<repo-name>` - Files will be downloaded to project folder
@@ -57,27 +57,35 @@ git config --global user.name "Your Name"
 7. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
 ### CREATING BRANCHES
-1. `git branch <branch-name>`: Create <branch-name> only (Does not checkout)
-3. `git checkout -b <branch-name>`: Create <branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+1. `git branch <branch-name>`: Create \<branch-name> only (Does not checkout)
+3. `git checkout -b <branch-name>`: Create \<branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
 ### GET LATEST CHECKPOINT (branch name CHECKPOINT)
 1. `git fetch upstream`
 2. `git checkout checkpointX`: (where X is the checkpoint number)
 
 ### PUSHING TO A BRANCH
-1. `git push --set-upstream origin <branch-name>`: Pushing to <branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
+1. `git push --set-upstream origin <branch-name>`: Pushing to \<branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 
 ### CHECKING CURRENT BRANCH
 1. `git branch`: Shows list of branches on repo, and points to current branch
 
 ### SWITCHING BRANCH
-1. `git checkout <branch1>`: Switch to <branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/) 
+1. `git checkout <branch1>`: Switch to \<branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/) 
 2. `git switch`: New version of `git checkout`
 
 ### FETCHING FROM A BRANCH (DIFFERENT FROM PULLING)
 1. `git fetch <branch>`
 2. `git checkout <branch-name>`
 3. More about git fetch [here](https://www.atlassian.com/git/tutorials/syncing/git-fetch#:~:text=The%20git%20fetch%20command%20downloads,else%20has%20been%20working%20on.&text=When%20downloading%20content%20from%20a,available%20to%20accomplish%20the%20task.)
+
+### MERGING
+To merge \<branch2> into \<branch1>, first checkout the branch to merge into (branch1), then merge the non-checked-out branch (branch2).
+1. `git checkout <branch1>`
+2. `git merge <branch2>`: Merge \<branch-name> into active branch
+<details><summary>Further explanation</summary>
+ Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from branch1 and branch2."
+</details>
 
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
