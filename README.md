@@ -105,6 +105,22 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 ### ADDING FILES TO GITIGNORE
 1. `echo '*.sql' >> .gitignore`
 
+## Moving around in Git 
+**HEAD**: The "symbolic name" for the currently checked out commit -- it's essentially what commit you're currently working on top of. Normally points to a branch name. 
+
+### Detaching HEAD
+1. `git checkout <commit-hash>`: Detaches HEAD from working branch to \<commit>
+
+### Relative References
+1. `git checkout HEAD^`or `git checkout <branch>^`: Moving upwards one commit from HEAD or branch
+
+1. `git checkout HEAD~3`or `git checkout <branch>~3`: Moving upwards 3 commits from HEAD or branch
+
+### Branch Forcing
+#### *To directly reassign a branch to a commit with the -f option*
+1. `git branch -f <main> HEAD~3`: Moves (by force) the \<main> branch to three parents behind HEAD.
+---
+
 ### About Git Links
 1. [The Git Fork-Branch-Pull Workflow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
 2. [Just git reset and push when you need to undo previous local commits](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-a-git-reset-and-push-to-remote-works-on-previous-local-commits)
