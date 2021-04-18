@@ -87,6 +87,15 @@ To merge \<branch2> into \<branch1>, first checkout the branch to merge into (br
  Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from branch1 and branch2."
 </details>
 
+### REBASE
+##### - *Another way to combine work between branches*
+Move work from \<branch1>* directly onto \<branch2>, such that it looks as if these 2 features were developed sequentially, although in reality they were developed in parallel
+1. `git rebase <branch2>`: Rebase (from \<branch1>*[checked out]) onto \<branch2>
+2. `git rebase <branch1>`: Updates \<branch2> onto (rebased) \<branch1> - Since branch2 is still "lagging behind" branch1. Since branch2 is the ancestor of branch1, Git will simply move branch2's reference forward in history to where branch1 is. 
+<details><summary>Further explanation</summary>
+Rebasing essentially takes a set of commits, "copies" them, and plops them down somewhere else. While this sounds confusing, the advantage of rebasing is that it can be used to make a nice linear sequence of commits. The commit log / history of the repository will be a lot cleaner if only rebasing is allowed.
+</details>
+
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
 
