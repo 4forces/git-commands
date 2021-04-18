@@ -56,8 +56,9 @@ git config --global user.name "Your Name"
 6. `git push origin master`: to push the committed files to master branch @ remote repo
 7. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
-### CREATING A BRANCH
-1. `git checkout -b <branch-name>`: Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+### CREATING BRANCHES
+1. `git branch <branch-name>`: Create <branch-name> only (Does not checkout)
+3. `git checkout -b <branch-name>`: Create <branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
 ### GET LATEST CHECKPOINT (branch name CHECKPOINT)
 1. `git fetch upstream`
@@ -70,7 +71,8 @@ git config --global user.name "Your Name"
 1. `git branch`: Shows list of branches on repo, and points to current branch
 
 ### SWITCHING BRANCH
-1. `git checkout <branch1>`: Switch to <branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/)
+1. `git checkout <branch1>`: Switch to <branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/) 
+2. `git switch`: New version of `git checkout`
 
 ### FETCHING FROM A BRANCH (DIFFERENT FROM PULLING)
 1. `git fetch <branch>`
@@ -125,5 +127,6 @@ git config --global user.name "Your Name"
 ---
 
 
-## Gitpod
+## Git commands - Part 2
+
 
