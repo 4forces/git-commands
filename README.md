@@ -56,6 +56,10 @@ git config --global user.name "Your Name"
 6. `git push origin master`: to push the committed files to master branch @ remote repo
 7. `git push -u origin master`: The -u flag is used to set origin as the upstream remote in your git config. As you push a branch successfully or up to date it, it adds upstream reference. Quoted from [here](https://www.interglobalmedianetwork.com/blog/2020-02-15-the-importance-and-advantage-of-git-push-u/)
 
+### PUSHING TO A BRANCH
+1. `git push --set-upstream origin <branch-name>`: Pushing to \<branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
+2. Related: To push existing to new repo [here](https://stackoverflow.com/questions/5181845/git-push-existing-repo-to-a-new-and-different-remote-repo-server)
+
 ### CREATING BRANCHES
 1. `git branch <branch-name>`: Create \<branch-name> only (Does not checkout)
 3. `git checkout -b <branch-name>`: Create \<branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
@@ -63,9 +67,6 @@ git config --global user.name "Your Name"
 ### GET LATEST CHECKPOINT (branch name CHECKPOINT)
 1. `git fetch upstream`
 2. `git checkout checkpointX`: (where X is the checkpoint number)
-
-### PUSHING TO A BRANCH
-1. `git push --set-upstream origin <branch-name>`: Pushing to \<branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 
 ### CHECKING CURRENT BRANCH
 1. `git branch`: Shows list of branches on repo, and points to current branch
