@@ -12,7 +12,8 @@
 1. `git add hello.txt`: stages hello.txt
 
 ### REMOVE FROM STAGING
-1. `git rm --cached password.txt`: remove password.txt from staging
+1. `git restore --staged password.txt` as suggested in git bash. More [here](https://www.git-tower.com/learn/git/commands/git-restore/)
+2. `git rm --cached password.txt`: remove password.txt from staging
 - [Difference of "git rm --cached x” vs “git reset head -- x](https://stackoverflow.com/questions/5798930/git-rm-cached-x-vs-git-reset-head-x/5800164#5800164)
 
 
