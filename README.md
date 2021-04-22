@@ -34,7 +34,16 @@ great way to reset accidental commits and revert to previous versions
 
 ### STOP TRACKING FILE
 1. `git rm -r --cached <filename.file>`: git removes tracking of filename.file (for good)
+### REWRITING HISTORY - GIT RESET, GIT REVERT
+`git reset` reverts changes by moving a branch reference (HEAD) backwards in time to an older commit - "rewriting history;" `git reset` will move a branch backwards as if the commit had never been made in the first place.
+1. `git reset HEAD~3`: Reverts to 3 commits before HEAD.
 
+While `git reset` works great for local branches, its method of "rewriting history" doesn't work for remote branches.
+In order to reverse changes, and share those reversed changes with others, we need to use `git revert`
+1. `git revert HEAD`:Creates a new commit that "reverses or undoes" the latest commit.
+
+### CHERRY-PICK
+1. `git cherry-pick <Commit1> <Commit2> <...>`: Copy a series of commits below your current location (HEAD).
 ### CLONE FROM SOMEONE'S REPOSITORY
 1. Open terminal (in VS Code)
 2. Navigate to desired Project-folder
@@ -73,7 +82,7 @@ git config --global user.name "Your Name"
 1. `git branch`: Shows list of branches on repo, and points to current branch
 
 ### SWITCHING BRANCH
-1. `git checkout <branch1>`: Switch to \<branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/) 
+1. `git checkout <branch1>`: Switch to \<branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/)
 2. `git switch`: New version of `git checkout`
 
 ### FETCHING FROM A BRANCH (DIFFERENT FROM PULLING)
@@ -93,7 +102,7 @@ To merge \<branch2> into \<branch1>, first checkout the branch to merge into (br
 ##### - *Another way to combine work between branches*
 Move work from \<branch1>* directly onto \<branch2>, such that it looks as if these 2 features were developed sequentially, although in reality they were developed in parallel
 1. `git rebase <branch2>`: Rebase (from \<branch1>*[checked out]) onto \<branch2>
-2. `git rebase <branch1>`: Updates \<branch2> onto (rebased) \<branch1> - Since branch2 is still "lagging behind" branch1. Since branch2 is the ancestor of branch1, Git will simply move branch2's reference forward in history to where branch1 is. 
+2. `git rebase <branch1>`: Updates \<branch2> onto (rebased) \<branch1> - Since branch2 is still "lagging behind" branch1. Since branch2 is the ancestor of branch1, Git will simply move branch2's reference forward in history to where branch1 is.
 <details><summary>Further explanation</summary>
 Rebasing essentially takes a set of commits, "copies" them, and plops them down somewhere else. While this sounds confusing, the advantage of rebasing is that it can be used to make a nice linear sequence of commits. The commit log / history of the repository will be a lot cleaner if only rebasing is allowed.
 </details>
@@ -107,8 +116,8 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 ### ADDING FILES TO GITIGNORE
 1. `echo '*.sql' >> .gitignore`
 
-## Moving around in Git 
-**HEAD**: The "symbolic name" for the currently checked out commit -- it's essentially what commit you're currently working on top of. Normally points to a branch name. 
+## Moving around in Git
+**HEAD**: The "symbolic name" for the currently checked out commit -- it's essentially what commit you're currently working on top of. Normally points to a branch name.
 
 ### Detaching HEAD
 1. `git checkout <commit-hash>`: Detaches HEAD from working branch to \<commit>
@@ -151,7 +160,7 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 10. `mv world.txt hello`: move world.txt to hello directory
 11. `rm -rf hello`: remove folder "hello" and its contents
 
-12. `nano hello.txt`: opens hello.txt with file editor 
+12. `nano hello.txt`: opens hello.txt with file editor
 13. `cat hello.txt`: prints contents of hello.txt to command line
 14. `diff hello.txt world.txt`: compares both txt files
    - *1d0* = line 1 in file 1, (need to) delete, to match line 0 (in file 2)
