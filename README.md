@@ -27,6 +27,9 @@
 1. `git reset --hard f27e1c`: discard local changes and resets file to version/state at SHA "f27e1c"
 great way to reset accidental commits and revert to previous versions
 
+### AMEND LAST COMMIT
+1. `git commit --amend`: "updates" the most recent commit with the amended changes in code.
+
 ### DISCARDING CHANGES
 1. `git stash`: Discard all local changes, but save them for possible re-use later
 2. `git checkout -- <file>`: Discarding local changes (permanently) to a file
@@ -93,7 +96,7 @@ git config --global user.name "Your Name"
 ### MERGING
 To merge \<branch2> into \<branch1>, first checkout the branch to merge into (branch1), then merge the non-checked-out branch (branch2).
 1. `git checkout <branch1>`
-2. `git merge <branch2>`: Merge \<branch-name> into active branch
+2. `git merge <branch2>`: Merge \<branch2> into current chedked out branch
 <details><summary>Further explanation</summary>
  Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from branch1 and branch2."
 </details>
@@ -123,13 +126,25 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 1. `git checkout <commit-hash>`: Detaches HEAD from working branch to \<commit>
 
 ### Relative References
-1. `git checkout HEAD^`or `git checkout <branch>^`: Moving upwards one commit from HEAD or branch
+1. `git checkout HEAD^` or `git checkout <branch>^`: Moving upwards one commit from HEAD or branch
 
-1. `git checkout HEAD~3`or `git checkout <branch>~3`: Moving upwards 3 commits from HEAD or branch
+1. `git checkout HEAD~3` or `git checkout <branch>~3`: Moving upwards 3 commits from HEAD or branch
 
 ### Branch Forcing
 #### *To directly reassign a branch to a commit with the -f option*
 1. `git branch -f <main> HEAD~3`: Moves (by force) the \<main> branch to three parents behind HEAD.
+
+### GIT TAGS and GIT DESCRIBE
+1. `git tag v1 <commit-1>`: Make a tag v1 at commit-1.
+   - This tags commit-1 as v1.
+If we leave the \<commit-1> off, git will just use whatever HEAD is at.
+Note that you will go into detached HEAD state -- this is because you can't commit directly onto the v1 tag
+2. `git describe <commit/branch/tag>`: If `<commit/branch/tag>` is not specifid, git just uses where HEAD is
+- Returns `<tag>_<num_of_Commits>_g<commit-hash>`
+   - `tag` is the closest ancestor tag in history
+   - `num_of_Commits` is how many commits away from the tag
+   - `<commit-hash>` is the hash of the current commit being described
+
 ---
 
 ### About Git Links
@@ -170,7 +185,5 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 
 ---
 
-
-## Git commands - Part 2
 
 
