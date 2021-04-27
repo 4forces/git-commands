@@ -45,8 +45,6 @@ While `git reset` works great for local branches, its method of "rewriting histo
 In order to reverse changes, and share those reversed changes with others, we need to use `git revert`
 1. `git revert HEAD`:Creates a new commit that "reverses or undoes" the latest commit.
 
-### CHERRY-PICK
-1. `git cherry-pick <Commit1> <Commit2> <...>`: Copy a series of commits below your current location (HEAD).
 ### CLONE FROM SOMEONE'S REPOSITORY
 1. Open terminal (in VS Code)
 2. Navigate to desired Project-folder
@@ -77,10 +75,6 @@ git config --global user.name "Your Name"
 1. `git branch <branch-name>`: Create \<branch-name> only (Does not checkout)
 3. `git checkout -b <branch-name>`: Create \<branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
-### GET LATEST CHECKPOINT (branch name CHECKPOINT)
-1. `git fetch upstream`
-2. `git checkout checkpointX`: (where X is the checkpoint number)
-
 ### CHECKING CURRENT BRANCH
 1. `git branch`: Shows list of branches on repo, and points to current branch
 
@@ -93,23 +87,57 @@ git config --global user.name "Your Name"
 2. `git checkout <branch-name>`
 3. More about git fetch [here](https://www.atlassian.com/git/tutorials/syncing/git-fetch#:~:text=The%20git%20fetch%20command%20downloads,else%20has%20been%20working%20on.&text=When%20downloading%20content%20from%20a,available%20to%20accomplish%20the%20task.)
 
+Note that `git fetch` does not change anything about your local state. *It will not update your main branch, or change anything about how your file system looks right now.*
+
+**Main branch will not be updated to latest commit.**
+
+<details><summary>Further explanation</summary>
+`git fetch` performs two main steps:
+(1) Downloads the commits that the remote has but are missing from our local repository
+(2) Updates where our remote branches point to (for instance, origin/main).
+`git fetch` essentially brings our local representation of the remote repository into synchronization with what the actual remote repository looks like (right now).
+</details>
+
+### GIT PULL
+`git pull`: Refers to the workflow of fetching remote changes **and then merging/updating them** with local branch. (Remember that `git fetch` does not merge/update remote commits, it only *downloads* remote commits, but does not update/merge the local branch to the latest commit fetched)
+
+There are some ways to *fetch* and *merge* remote changes:
+- `git cherry-pick origin main`
+- `git rebase origin main`
+- `git merge origin main`
+- etc...
+
+#### GIT PULL --REBASE
+ `git pull --rebase`: shorthand for `git fetch` followed by `git rebase`
+
+ **Note:** The standard `git pull` is shorthand for `git fetch` followed by `git merge`
+
 ### MERGING
 To merge \<branch2> into \<branch1>, first checkout the branch to merge into (branch1), then merge the non-checked-out branch (branch2).
 1. `git checkout <branch1>`
-2. `git merge <branch2>`: Merge \<branch2> into current chedked out branch
+2. `git merge <branch2>`: Merge \<branch2> into current checked out branch
+
+ Merging in Git creates a special commit that has **two unique parents.**
 <details><summary>Further explanation</summary>
- Merging in Git creates a special commit that has two unique parents. A commit with two parents essentially means "I want to include all the work from branch1 and branch2."
+A commit with two parents essentially means "I want to include all the work from branch1 and branch2."
 </details>
 
 ### REBASE
 ##### - *Another way to combine work between branches*
 Move work from \<branch1>* directly onto \<branch2>, such that it looks as if these 2 features were developed sequentially, although in reality they were developed in parallel
-1. `git rebase <branch2>`: Rebase (from \<branch1>*[checked out]) onto \<branch2>
-2. `git rebase <branch1>`: Updates \<branch2> onto (rebased) \<branch1> - Since branch2 is still "lagging behind" branch1. Since branch2 is the ancestor of branch1, Git will simply move branch2's reference forward in history to where branch1 is.
+```
+git checkout <point1> //start from <point1>
+git rebase <point2> //end at <point2>
+```
+2. If `<point1>` is the ancestor of `<point2>`, rebase from `<point1>` (which is already checked out) and add commits up to `<point2>`.
+   - `<point2>` is further downstream from `<point1>`
+3. If `<point2>` is the ancestor of `<point1>`, `<point2>` will be brought forward to `<point1>`
 <details><summary>Further explanation</summary>
 Rebasing essentially takes a set of commits, "copies" them, and plops them down somewhere else. While this sounds confusing, the advantage of rebasing is that it can be used to make a nice linear sequence of commits. The commit log / history of the repository will be a lot cleaner if only rebasing is allowed.
 </details>
 
+### CHERRY-PICK
+1. `git cherry-pick <Commit1> <Commit2> <...>`: Copy a series of commits below your current (checkedout) location (HEAD).
 ### LINKING INITIALISED GIT TO A URL (for eg heroku)
 1. `git remote add heroku https://git.heroku.com/my-new-app.git`
 
@@ -119,18 +147,18 @@ Rebasing essentially takes a set of commits, "copies" them, and plops them down 
 ### ADDING FILES TO GITIGNORE
 1. `echo '*.sql' >> .gitignore`
 
-## Moving around in Git
+## MOVING AROUND IN GIT
 **HEAD**: The "symbolic name" for the currently checked out commit -- it's essentially what commit you're currently working on top of. Normally points to a branch name.
 
-### Detaching HEAD
+### DETACHING **HEAD**
 1. `git checkout <commit-hash>`: Detaches HEAD from working branch to \<commit>
 
-### Relative References
+### RELATIVE REFERENCES
 1. `git checkout HEAD^` or `git checkout <branch>^`: Moving upwards one commit from HEAD or branch
 
 1. `git checkout HEAD~3` or `git checkout <branch>~3`: Moving upwards 3 commits from HEAD or branch
 
-### Branch Forcing
+### BRANCH FORCING
 #### *To directly reassign a branch to a commit with the -f option*
 1. `git branch -f <main> HEAD~3`: Moves (by force) the \<main> branch to three parents behind HEAD.
 
@@ -144,6 +172,17 @@ Note that you will go into detached HEAD state -- this is because you can't comm
    - `tag` is the closest ancestor tag in history
    - `num_of_Commits` is how many commits away from the tag
    - `<commit-hash>` is the hash of the current commit being described
+
+### SPECIFYING PARENTS - git checkout HEAD^1
+Like the `~` modifier, the `^` modifier also accepts an optional number after it.
+
+Rather than specifying the number of generations to go back (what `~` takes), the modifier on `^` specifies which parent to go back from the commit - this `^` only applies to merged commits have multiple parents.
+
+Git will normally follow the "first" parent upwards from a merge commit, but specifying a number with `^` will change to the "second parent" `^2`, "third parent" `^3`", etc.
+
+1. `git checkout <commit>^3`: Checkout third parent of commit
+
+2. `git checkout <commit>~^2^3`: Chains multiple commands, goes upwards once `~` from current location \<commit>, then to parent 2 `^2` from current location, and parent 3 `^3` from current location
 
 ---
 
