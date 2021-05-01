@@ -71,6 +71,38 @@ git config --global user.name "Your Name"
 1. `git push --set-upstream origin <branch-name>`: Pushing to \<branch-name> of 'origin-master'. More [here](https://stackoverflow.com/questions/37770467/why-do-i-have-to-git-push-set-upstream-origin-branch)
 2. Related: To push existing to new repo [here](https://stackoverflow.com/questions/5181845/git-push-existing-repo-to-a-new-and-different-remote-repo-server)
 
+### Additional notes on git pushing
+`git push` can also take optiional arguments:
+ ```
+ //git push <remote-repo> <branch-location>
+ git push origin main
+ ```
+This means:
+* Go to branch `main` in **local** repository, get all the commits,
+* go to `main` branch on **remote**, the `<branch-location>`,
+* on `<remote-repo>` named `origin`, and update all commits
+* i.e. `<branch-location>` (for e.g. `main`) is same branch name on both local and remote. For different branch name refer to [below](#pushing-to-a-different-branch)
+
+By doing this, we specify where the commits *will come from* - `main` on local, and *where commits will go* - also `main`, but on the remote. Git will therefore not bother where we are checked out on.
+
+<details><summary>Additional notes on git "origin"</summary>
+In Git, "origin" is a shorthand name for the remote repository that a project was originally cloned from. More precisely, it is used instead of that original repository's URL - and thereby makes referencing much easier.
+
+Referenced from [here](https://www.git-tower.com/learn/git/glossary/origin/#:~:text=In%20Git%2C%20%22origin%22%20is,thereby%20makes%20referencing%20much%20easier.)
+</details>
+
+## PUSHING TO A DIFFERENT BRANCH
+To specify the \<source-branch> and \<destination-branch>:
+```
+git push origin <source-branch>:<destination-branch>
+```
+This is commonly referred to as a colon refspec. Refspec refers to a location that git can figure out (like the branch `main`, or even just `HEAD~1`).
+
+If the remote branch does not exist, use the following command:
+```
+git push origin <source-branch>:<newBranch>
+```
+
 ### CREATING BRANCHES
 1. `git branch <branch-name>`: Create \<branch-name> only (Does not checkout)
 3. `git checkout -b <branch-name>`: Create \<branch-name> and checkout. Read more [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
@@ -183,6 +215,31 @@ Git will normally follow the "first" parent upwards from a merge commit, but spe
 1. `git checkout <commit>^3`: Checkout third parent of commit
 
 2. `git checkout <commit>~^2^3`: Chains multiple commands, goes upwards once `~` from current location \<commit>, then to parent 2 `^2` from current location, and parent 3 `^3` from current location
+
+### WHAT IS **REMOTE TRACKING BRANCH**?
+ The connection between **main** and **origin main** is granted by the *"remote tracking"* property of branches.
+ The **main branch** is set to track **origin main** -- this means there is an <ins>implied merge target</ins> and <ins>implied push destination</ins> for the main branch.
+
+ During a clone, git creates a remote branch for every branch on the remote (for e.g. *origin main* for *main*). A local branch that tracks the currently active branch (usually *main*) on the remote is also created.
+
+ This explains why the following command output is seen when **git cloning**:
+`local branch "main" set to track remote branch "origin main"`
+
+We can make any branch **origin main** by the following:
+
+**Method 1**:
+```
+git checkout -b <any_branch> origin main
+```
+
+**Method 2**:
+```
+git branch -u origin main <any_branch>
+```
+
+This creates a new branch `<any_branch>` and sets this branch to track `origin main`.
+
+
 
 ---
 
