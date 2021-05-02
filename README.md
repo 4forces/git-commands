@@ -72,7 +72,7 @@ git config --global user.name "Your Name"
 2. Related: To push existing to new repo [here](https://stackoverflow.com/questions/5181845/git-push-existing-repo-to-a-new-and-different-remote-repo-server)
 
 ### Additional notes on git pushing
-`git push` can also take optiional arguments:
+`git push` can also take optional arguments:
  ```
  //git push <remote-repo> <branch-location>
  git push origin main
@@ -273,6 +273,7 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 1. [The Git Fork-Branch-Pull Workflow](https://www.tomasbeuzen.com/post/git-fork-branch-pull/)
 2. [Just git reset and push when you need to undo previous local commits](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-a-git-reset-and-push-to-remote-works-on-previous-local-commits)
 3. [Using Git in a team: a cheatsheet](https://jameschambers.co/git-team-workflow-cheatsheet/)
+4. [Learn Git Branching](https://learngitbranching.js.org/) and [solutions](https://github.com/saivittalb/learn-git-branching-solutions)
 
 ---
 
