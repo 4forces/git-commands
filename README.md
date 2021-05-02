@@ -81,7 +81,7 @@ This means:
 * Go to branch `main` in **local** repository, get all the commits,
 * go to `main` branch on **remote**, the `<branch-location>`,
 * on `<remote-repo>` named `origin`, and update all commits
-* i.e. `<branch-location>` (for e.g. `main`) is same branch name on both local and remote. For different branch name refer to [below](#pushing-to-a-different-branch)
+* i.e. `<branch-location>` (for e.g. `main`) is same branch name on both local and remote. For different branch name refer to [below](###pushing-to-a-different-branch)
 
 By doing this, we specify where the commits *will come from* - `main` on local, and *where commits will go* - also `main`, but on the remote. Git will therefore not bother where we are checked out on.
 
@@ -91,7 +91,7 @@ In Git, "origin" is a shorthand name for the remote repository that a project wa
 Referenced from [here](https://www.git-tower.com/learn/git/glossary/origin/#:~:text=In%20Git%2C%20%22origin%22%20is,thereby%20makes%20referencing%20much%20easier.)
 </details>
 
-## PUSHING TO A DIFFERENT BRANCH
+### PUSHING TO A DIFFERENT BRANCH
 To specify the \<source-branch> and \<destination-branch>:
 ```
 git push origin <source-branch>:<destination-branch>
@@ -102,6 +102,14 @@ If the remote branch does not exist, use the following command:
 ```
 git push origin <source-branch>:<newBranch>
 ```
+
+### PUSHING FROM "EMPTY" SOURCE
+We can technnically specify *nothing* as a valid `source` for `git push` (and also `git fetch`):
+```
+git push origin :<destination-branch>
+```
+What happens is that the \<destination-branch> will be deleted the remote, since we are pushing *nothing* to it.
+Compare to [### GIT FETCH "NOTHING" FROM A REMOTE](###git-fetch-"nothing"-from-a-remote), where fetching *nothing* actually creates a new branch locally.
 
 ### CREATING BRANCHES
 1. `git branch <branch-name>`: Create \<branch-name> only (Does not checkout)
@@ -114,7 +122,7 @@ git push origin <source-branch>:<newBranch>
 1. `git checkout <branch1>`: Switch to \<branch1>. Read more [here](https://backlog.com/git-tutorial/branching/switch-branch/)
 2. `git switch`: New version of `git checkout`
 
-### FETCHING FROM A BRANCH (DIFFERENT FROM PULLING)
+### GIT FETCH FROM A BRANCH (DIFFERENT FROM PULLING)
 1. `git fetch <branch>`
 2. `git checkout <branch-name>`
 3. More about git fetch [here](https://www.atlassian.com/git/tutorials/syncing/git-fetch#:~:text=The%20git%20fetch%20command%20downloads,else%20has%20been%20working%20on.&text=When%20downloading%20content%20from%20a,available%20to%20accomplish%20the%20task.)
@@ -123,12 +131,30 @@ Note that `git fetch` does not change anything about your local state. *It will 
 
 **Main branch will not be updated to latest commit.**
 
+If there are no arguments specified, just a pure `git fetch`, git will download all commits from the remote onto **all their respective local tracking branches**.
+
 <details><summary>Further explanation</summary>
 `git fetch` performs two main steps:
 (1) Downloads the commits that the remote has but are missing from our local repository
 (2) Updates where our remote branches point to (for instance, origin/main).
 `git fetch` essentially brings our local representation of the remote repository into synchronization with what the actual remote repository looks like (right now).
 </details>
+
+### GIT FETCH - EXTENDED
+`git fetch origin <remote-branch>`: Git will go to the \<remote-branch> on the remote, grab all the commits not present on local, and update on the respective local tracking branch accordingly.
+
+Note that git will not update the local non-remote branches. For e.g. git updates the local tracking branch`origin branchName` on local repo, but will not update `branchName` on local rep.
+
+This is in-line as explained previously, where `git-fetch` only downloads commits, but does not update/merge them into local branch.
+
+### GIT FETCH "NOTHING" FROM A REMOTE
+Similar to [PUSHING EMPTY SOURCE TO DESTINATION](###pushing-from-"empty"-source), there is a fetch from *nothing*:
+```
+git fetch origin :<destination-branch>
+```
+This will create a new branch locally, unlike pushing from an empty source, which actually **deletes** the remote branch.
+
+Note that this can be applied to `git pull` too
 
 ### GIT PULL
 `git pull`: Refers to the workflow of fetching remote changes **and then merging/updating them** with local branch. (Remember that `git fetch` does not merge/update remote commits, it only *downloads* remote commits, but does not update/merge the local branch to the latest commit fetched)
