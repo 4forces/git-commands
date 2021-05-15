@@ -279,27 +279,36 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 
 ## Unix Command Line Interface (CLI)
 
+1. Press `tab` to auto-fill file/directory names
 1. `pwd`: print working directory
 2. `history`: show history of past commands
     - `!5`: runs steps 5 in history list
-4. `cd ..` : chg directory
+4. `cd ..` : chg directory `..` points to directory above current
    - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
    - `cd -`: up one directory level
+5.  Single dot `.`  refers to current directory, so `ls .` is the same as `ls`, and `cd .` does not appear to do anything
+6. tilde `~` points to the home directory. `ls ~` will always list contents of the home directory. `cd ~` will always bring us to the home directory
 5. `touch hello.txt`: create file hello.tx
    -  `echo "hello!" >> hello.txt`: write "hello!" into hello.txt
-5. `ls`: list files
+6. `ls`: list files
    - `ls hello/` : list files in hello directory
    - `ls -l`: list files in 'list' format
    - `ls -la`: list all
 6. `rm hello.txt`: delete hello.txt
 7. `mkdir hello`: create new directory named hello
 8. `cp hello.txt hello`: copy hello.txt to hello directory
+9. `cp seasonal/autumn.csv seasonal/winter.csv backup`: copy autumn.csv and winter.csv into **backup** directory
 9. `cp hello.txt world.txt`: copy hello.txt and rename it as world.txt
 10. `mv world.txt hello`: move world.txt to hello directory
+11. `mv folder1 folder2`: *moves* (changes the name of) directory **folder1** to directory **folder2**
 11. `rm -rf hello`: remove folder "hello" and its contents
-
+12. `rmdir`: deletes directyory
 12. `nano hello.txt`: opens hello.txt with file editor
 13. `cat hello.txt`: prints contents of hello.txt to command line
+14. `more hello.txt`: older version of `cat`
+15. `less hello.txt`: print contents page by page
+16. `less hello.txt bye.txt`, `:n`: view multiple files, `:n` to go to next file, `:p` moves back to previous file, `:q` to quit
+17. `head seasonal/summer.csv`: prints the first 10 lines of `summer.csv`
 14. `diff hello.txt world.txt`: compares both txt files
    - *1d0* = line 1 in file 1, (need to) delete, to match line 0 (in file 2)
    - *1c1* = line 1 in file 1, (need to) change, to match line 1 (in file 2)
