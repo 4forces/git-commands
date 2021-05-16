@@ -283,38 +283,60 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 1. `pwd`: print working directory
 2. `history`: show history of past commands
     - `!5`: runs steps 5 in history list
+    - `!<command>`: runs last instance of the command
 4. `cd ..` : chg directory `..` points to directory above current
    - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
-   - `cd -`: up one directory level
-5.  Single dot `.`  refers to current directory, so `ls .` is the same as `ls`, and `cd .` does not appear to do anything
-6. tilde `~` points to the home directory. `ls ~` will always list contents of the home directory. `cd ~` will always bring us to the home directory
+   - `cd -` : up one directory level
+   -  Single dot `.`  refers to current directory, so `ls .` is the same as `ls`, and `cd .` does not appear to do anything
+   - tilde `~` points to the home directory. `ls ~` will always list contents of the home directory. `cd ~` will always bring us to the home directory
 5. `touch hello.txt`: create file hello.tx
    -  `echo "hello!" >> hello.txt`: write "hello!" into hello.txt
+6. `>`: means redirect, for e.g. in `head -n 5 seasonal/summer.csv > top.csv`: head's output is writtein to a newly created file called top.csv
+6. `|` : pipe symbol. Foe e.g. `head -n 5 seasonal/summer.csv | tail -n 3`: Use the output of the command on the left `head -n 5 seasonal/summer.csv` as the input to the command on the right `tail -n 3`.
 6. `ls`: list files
    - `ls hello/` : list files in hello directory
    - `ls -l`: list files in 'list' format
    - `ls -la`: list all
+   - `ls -R`: Recursive. Shows every file and directory in the current level, then everything in each sub-directory, and so on.
+   - `ls -F`: Adds a `/` after each directory. Adds a `*` after every executable. This is for clearer view of directories, files and executables.
 6. `rm hello.txt`: delete hello.txt
+   - `rm -rf hello`: remove folder "hello" and its contents
 7. `mkdir hello`: create new directory named hello
 8. `cp hello.txt hello`: copy hello.txt to hello directory
-9. `cp seasonal/autumn.csv seasonal/winter.csv backup`: copy autumn.csv and winter.csv into **backup** directory
-9. `cp hello.txt world.txt`: copy hello.txt and rename it as world.txt
+   - `cp seasonal/autumn.csv seasonal/winter.csv backup`: copy autumn.csv and winter.csv into **backup** directory
+   - `cp hello.txt world.txt`: copy hello.txt and rename it as world.txt
 10. `mv world.txt hello`: move world.txt to hello directory
-11. `mv folder1 folder2`: *moves* (changes the name of) directory **folder1** to directory **folder2**
-11. `rm -rf hello`: remove folder "hello" and its contents
+      - `mv folder1 folder2`: *moves* (changes the name of) directory **folder1** to directory **folder2**
 12. `rmdir`: deletes directyory
 12. `nano hello.txt`: opens hello.txt with file editor
 13. `cat hello.txt`: prints contents of hello.txt to command line
-14. `more hello.txt`: older version of `cat`
-15. `less hello.txt`: print contents page by page
-16. `less hello.txt bye.txt`, `:n`: view multiple files, `:n` to go to next file, `:p` moves back to previous file, `:q` to quit
-17. `head seasonal/summer.csv`: prints the first 10 lines of `summer.csv`
+      - `more hello.txt`: older version of `cat`
+      - `less hello.txt`: print contents page by page
+      - `less hello.txt bye.txt`, `spacebar` to scroll, `:n`: view multiple files, `:n` to go to next file, `:p` moves back to previous file, `:q` to quit
+17. `head seasonal/summer.csv`: prints the first 10 lines (rows) of `summer.csv`
+      - `head -n 3 seasonal/summer.csv`: prints the first 3 lines
+18. `tail seasonal/summer.csv`: prints the last lines (rows) of the file
+      - `tail -n +7 seasonal/summer.csv`: prints from line `7` onwards
 14. `diff hello.txt world.txt`: compares both txt files
-   - *1d0* = line 1 in file 1, (need to) delete, to match line 0 (in file 2)
-   - *1c1* = line 1 in file 1, (need to) change, to match line 1 (in file 2)
+      - *1d0* = line 1 in file 1, (need to) delete, to match line 0 (in file 2)
+      - *1c1* = line 1 in file 1, (need to) change, to match line 1 (in file 2)
 15. `clear`: clears console screen
 16. `df`: shows disk space
+7. `cut -f 2-5,8 -d , values.csv` : prints "columns" of the file `values.csv` with the following parameters:
+    - Select columns 2 through 5 and columns 8 in the file, which has comma as separator
+    - `-f` fields, purpose is to specify columns
+    - `-d` delimiter, purpose is to point to the separator used in the file
+8. `grep bicuspid seasonal/winter.csv` : prints rows from winter.csv that contain "bicuspid". Some flags are:
+      - `c`: print a count of matching lines rather than the lines themselves
+      - `h`: do not print the names of files when searching multiple files
+      - `i`: ignore case (e.g., treat "Regression" and "regression" as matches)
+      - `l`: print the names of files that contain matches, not the matches
+      - `n`: print line numbers for matching lines
+      - `v`: invert the match, i.e., only show lines that don't match
 
+### References:
+1. [Code Institute](https://codeinstitute.net/)
+2. [DataCamp](https://www.datacamp.com/)
 ---
 
 
