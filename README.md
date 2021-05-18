@@ -280,6 +280,7 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 ## Unix Command Line Interface (CLI)
 
 1. Press `tab` to auto-fill file/directory names
+2. `set`: Get full list of environment variables
 1. `pwd`: print working directory
 2. `history`: show history of past commands
     - `!5`: runs steps 5 in history list
@@ -333,6 +334,18 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
       - `l`: print the names of files that contain matches, not the matches
       - `n`: print line numbers for matching lines
       - `v`: invert the match, i.e., only show lines that don't match
+9. `wc`: short for "word count". Prints the number of `-c`: characters; `-w`: words; `-l`: lines
+10. Wildcards.
+     - Asterisk `*` is the most common. Means to "match zero or more characters. For e.g. `cut -d , -f 1 seasonal/winter.csv seasonal/spring.csv seasonal/summer.csv` becomes `cut -d , -f 1 seasonal/*` or `cut -d , -f 1 seasonal/*.csv`
+     - `?`: matches a single character, e.g. `201?.txt`
+     - `[...]`:matches any character in the square brackets. E.g. `201[78].txt` gives `2017.txt` and `2018.txt`
+     - `{...}`: match any comma-separated patterns within. E.g. `{*.txt, *.csv}` gives files ending with `.txt` and `.csv` but not ending with `.pdf`
+11. `sort`: Puts data in order. Flags:
+    - `-n` numerical
+    - `-r` reverse
+    - `-b` ignore leading blanks
+    - `-f` fold case aka be case-insensitive
+12. `uniq`: remove duplicated line values that is immmediately below (does not work if values are in alternate lines). `uniq -c`: counts the number of lines the specified values)
 
 ### References:
 1. [Code Institute](https://codeinstitute.net/)
