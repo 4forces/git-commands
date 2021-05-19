@@ -280,11 +280,26 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 ## Unix Command Line Interface (CLI)
 
 1. Press `tab` to auto-fill file/directory names
+1. Assign variables: `training=seasonal/summer.csv`
+2. `echo $x`: prints variable `x` to console
 2. `set`: Get full list of environment variables
+3, Call variable value: add a `$` sign, for e.g. `$user` = repl, `$x` = 5, etc
 1. `pwd`: print working directory
 2. `history`: show history of past commands
     - `!5`: runs steps 5 in history list
     - `!<command>`: runs last instance of the command
+    - Save last 3 lines of `history` to `steps.txt`
+    ```shell
+    history | tail -n 3 > steps.txt
+    ```
+3. Re-run commands:
+```shell
+nano dates.sh
+# type the command(s) to run, save and exit, for eg
+cut -d , -f 1 seasonal/*.csv
+# bash <file>.sh to run
+bash headers.sh
+```
 4. `cd ..` : chg directory `..` points to directory above current
    - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
    - `cd -` : up one directory level
@@ -346,6 +361,12 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
     - `-b` ignore leading blanks
     - `-f` fold case aka be case-insensitive
 12. `uniq`: remove duplicated line values that is immmediately below (does not work if values are in alternate lines). `uniq -c`: counts the number of lines the specified values)
+13. Loops:
+The structure is:
+```shell
+# for …variable… in …list… ; do …body… ; done
+for filetype in gif jpg png; do echo $filetype; done
+```
 
 ### References:
 1. [Code Institute](https://codeinstitute.net/)
