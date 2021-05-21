@@ -294,12 +294,14 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
     ```
 3. Re-run commands:
 ```shell
+# open the script to add commans:
 nano dates.sh
-# type the command(s) to run, save and exit, for eg
+# type the command(s) to run, save and exit, for eg:
 cut -d , -f 1 seasonal/*.csv
-# bash <file>.sh to run
+# bash <file>.sh to run:
 bash headers.sh
 ```
+4. `$@`: Running commands with multiple files (google if unsure)
 4. `cd ..` : chg directory `..` points to directory above current
    - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
    - `cd -` : up one directory level
