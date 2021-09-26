@@ -56,12 +56,29 @@ docker build
 
 `docker run -t`: with pseudo terminal (from/on the container)
 
-`docker run -p 80:5000 [image]`: map port 80 (on docker/local host level) to port 5000 on container
+`docker run -p 80:5000 [image]`: map port 5000 on container to port 80 (on docker/local host level).
 
 **Note: Each docker container (within the docker host) has their own IP and port. The docker host also has its own IP. We are mapping the docker container port to a port at docker host leve for external users to access the docker container.*
+*E.g. `.0.0.0:3456->3456/tcp, 0.0.0.0:38080->80/tcp` - ports published on hosts -> ports exposed*
+
 
 `docker run -v [/local_data_dir_path]:[/container_data_dir_path] [image]`: maps container 'data folder' to local folder. This is for data retention as data folder is destroyed when container is deleted. 
 
-## Other commands
+## Environment Variables
+
+An example of setting the env variable in the .py and running it from docker:
+```python
+# sample code of a webapp showing change of color
+
+import os
+from flask import Flask
+
+color = os.environ.get('APP_COLOR') # previously color = "red" 
+```
+```
+// run following commands (in console?) to apply color = blue
+export APP_COLOR=blue; python app.py
+```
+`docker run -e APP_COLOR=blue [image]`: apply the env variable APP_COLOR=blue and run the image
 
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
