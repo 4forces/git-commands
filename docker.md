@@ -1,18 +1,10 @@
-# Docker Commands
+# Docker
 
 ## Common Commands
 
 `docker –version`: Shows docker version. Can also check if docker is installed
 
 `docker pull [image]`: Download image without running it
-
-`docker run [docker_image]`: run a container from an image
-
-    *A container only exists as long as the process inside is alive. If the web service inside the container is stopped or crashed, the container exits.*
-
-`docker run ubuntu sleep 5`: Run ubuntu with a sleep command for 5s. 
-
-*The container running the Ubuntu image will be alive as long as the sleep command is active. The container will close after sleep command exits* 
 
 `docker exec [container_Name] [command]`: Executes command on running container
 
@@ -44,7 +36,15 @@ docker push
 
 * [Reference 2: Edureka](https://www.edureka.co/blog/docker-commands/#rmi)
 
-## More on docker run
+## docker run
+
+`docker run [docker_image]`: run a container from an image
+
+    *A container only exists as long as the process inside is alive. If the web service inside the container is stopped or crashed, the container exits.*
+
+`docker run ubuntu sleep 5`: Run ubuntu with a sleep command for 5s. 
+
+*The container running the Ubuntu image will be alive as long as the sleep command is active. The container will close after sleep command exits* 
 
 `docker run [image]:4.0`: ‘4.0’ refers to tag (version). Default is ‘latest’ tag
 
@@ -107,5 +107,52 @@ ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run // specifies a command to
 *Note: docker build can be runned on individual step id to avoid restart from beginning, for eg if we update source code for our app*
 
 4. Run `docker push [my/custom-app/folder/image-name]`
+
+## CMD vs ENTRYPOINT
+
+**Script for specific commands to run the CMD file**
+
+```
+// ubuntu-sleeper file
+FROM Ubuntu
+
+CMD sleep 5 // runs the sleep command for 5 seconds
+```
+
+To build the above CMD file:
+`docker build -t ubuntu-sleeper`
+
+To run:
+`docker run ubuntu-sleeper`
+
+**Formats to type CMD**
+
+E.g. 1: `CMD command param1`:`CMD sleep 5` - standard format
+
+E.g. 2: `CMD  ["command","param1"]`:`CMD  ["sleep","5"]` - In JSON  format
+
+**CMD vs ENTRYPOINT**
+```
+// ubuntu-sleeper file with 'empty' sleep command
+FROM Ubuntu
+
+ENTRYPOINT ["sleep"] // command to run at start
+```
+
+Run with variable: `docker run ubuntu-sleeper 10` - Command at Startup: sleep 10 
+('10' is user input, 'sleep' from ENTRYPOINT)
+
+**Specify a default CMD with optional ENTRYPOINT**
+```
+// ubuntu-sleeper file with 'empty' sleep command and default CMD argument
+FROM Ubuntu
+
+ENTRYPOINT ["sleep"] // command to run at start
+
+CMD ["5"] // 5 will be default argument if no user input. Must be in JSON format
+```
+
+**Overwrite the original sleep CMD with newly created sleep2.0 ENTRYPOINT CMD**
+`docker run --entrypoint sleep2.0 ubuntu-sleeper 10`: The final command at startup will be `sleep2.0 10`
 
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
