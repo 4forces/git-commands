@@ -36,7 +36,7 @@ docker push
 
 `docker rmi [image]`: Remove a downloaded image. Delete all dependent containers first.
 
-docker build
+`docker history [image]`: View details of the image layers, like 'created by' and 'size'.
 
 `docker inspect [container_name/id]`: view details of container like "id", "state", "mounts", etc
 
@@ -79,6 +79,33 @@ color = os.environ.get('APP_COLOR') # previously color = "red"
 // run following commands (in console?) to apply color = blue
 export APP_COLOR=blue; python app.py
 ```
-`docker run -e APP_COLOR=blue [image]`: apply the env variable APP_COLOR=blue and run the image
+`docker run -e APP_COLOR=blue [image]`: apply the env variable APP_COLOR=blue and run the (above) image
+
+## Images
+
+**Steps**
+1. List down the steps/instructions to be done first
+2. Create a Dockerfile with following the steps listed, e.g.
+```
+//DockerFile
+// [INSTRUCTION] [argument]
+
+FROM Ubuntu // defines base OS for container
+
+Run apt-get update // runs commands on the image, for e.g apt-get update, install python, etc
+RUN apt-get install python 
+
+RUN pip install flask
+RUN pip install flask-mysql
+
+COPY . /opt/source-code // copy everything to the folder in the image 
+
+ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run // specifies a command to run when the image is build in the container
+```
+
+3. Run `docker build Dockerfile -t [my/custom-app/folder/image-name]` to create image locally on system. The steps involved in building the various layers for the image, for e.g. getting core image, installing python dependencies, copying app.py etc will be shown in console. Each step builds a layer on top of the previous layer.
+*Note: docker build can be runned on individual step id to avoid restart from beginning, for eg if we update source code for our app*
+
+4. Run `docker push [my/custom-app/folder/image-name]`
 
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
