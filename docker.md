@@ -40,7 +40,7 @@ docker push
 
 `docker run [docker_image]`: run a container from an image
 
-    *A container only exists as long as the process inside is alive. If the web service inside the container is stopped or crashed, the container exits.*
+*A container only exists as long as the process inside is alive. If the web service inside the container is stopped or crashed, the container exits.*
 
 `docker run ubuntu sleep 5`: Run ubuntu with a sleep command for 5s. 
 
@@ -129,7 +129,7 @@ To run:
 
 E.g. 1: `CMD command param1`:`CMD sleep 5` - standard format
 
-E.g. 2: `CMD  ["command","param1"]`:`CMD  ["sleep","5"]` - In JSON  format
+E.g. 2: `CMD  ["command","param1"]`:`CMD  ["sleep","5"]` - In JSON format
 
 **CMD vs ENTRYPOINT**
 ```
@@ -153,6 +153,69 @@ CMD ["5"] // 5 will be default argument if no user input. Must be in JSON format
 ```
 
 **Overwrite the original sleep CMD with newly created sleep2.0 ENTRYPOINT CMD**
-`docker run --entrypoint sleep2.0 ubuntu-sleeper 10`: The final command at startup will be `sleep2.0 10`
+`docker run --entrypoint sleep2.0 ubuntu-sleeper 10`: 
+The final command at startup will be `sleep2.0 10`
+
+## Networking
+
+1. Bridge Network
+
+   `docker run Ubuntu`: Creates an internal network connecting (bridging) all the containers within the host
+
+2. Use Host Network
+
+   `docker run Ubuntu --network=host`: All containers interface with external world via the host port (5000). Therefore only 1 container can be used in 1 host.
+
+3. No network
+
+   `docker run Ubuntu --network=none`: Disables network connection for the container
+
+**User-define Networks**
+
+```
+\\ 1. Defining which containers share which network bridge
+
+docker network create \
+    --driver bridge    \    \\specify driver (bridge/host/overlay/null)
+    --subnet 182.18.0.0/16  \\specify subnet
+    --gateway 182.18.0.1    \\specify gateway
+    custom-isolated-network \\custom network name
+```
+```
+\\ 2. To list all networks, run the following command
+
+docker network ls
+```
+```
+\\ 3. To list network settings including IPAddress and MacAddress, type
+
+docker inspect [Id/Name]
+```
+**Embedded DNS**
+* Docker runs a DNS Server internally in the host at IP 127.0.0.1
+* Use the container name to to connect containters (for e.g web container to mysql DB container), NOT the IP which will be dynamic every session. 
+
+**Examples**
+```
+\\ 1. set up a mysql db container with the following params
+
+docker run -d -e \                  \\run in -d detached, -e env var input
+MYSQL_ROOT_PASSWORD=db_pass123 \    \\set env var
+--name mysql-db \                   \\set container name
+--network wp-mysql-network \        \\set network name
+mysql:5.6                           \\specify image tag
+```
+```
+\\ 2. Deploy a web app with the following params. Expose the port to 38080 on host
+
+docker run \
+--network=wp-mysql-network \        \\attach to created network
+-e DB_Host=mysql-db \               \\set env var
+-e DB_Password=db_pass123 \         \\set env var
+-p 38080:8080 \                     \\expose port to 38080 on the host
+--name webapp \                     \\set container name
+--link mysql-db:mysql-db \          \\link this webapp with mysql container
+-d kodekloud/simple-webapp-mysql    \\set image to use
+```
 
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
