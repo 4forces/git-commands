@@ -199,11 +199,11 @@ docker inspect [Id/Name]
 ```
 \\ 1. set up a mysql db container with the following params
 
-docker run -d -e \                  \\run in -d detached, -e env var input
-MYSQL_ROOT_PASSWORD=db_pass123 \    \\set env var
---name mysql-db \                   \\set container name
---network wp-mysql-network \        \\set network name
-mysql:5.6                           \\specify image tag
+docker run -d \                      \\run in -d detached, -e env var input
+-e MYSQL_ROOT_PASSWORD=db_pass123 \  \\set env var
+--name mysql-db \                    \\set container name
+--network wp-mysql-network \         \\set network name
+mysql:5.6                            \\set image to use (with tag)
 ```
 ```
 \\ 2. Deploy a web app with the following params. Expose the port to 38080 on host
