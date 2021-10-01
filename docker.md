@@ -218,4 +218,29 @@ docker run \
 -d kodekloud/simple-webapp-mysql    \\set image to use
 ```
 
+**Docker Storage**
+
+* Image Layer(Read Only) - Like ROM
+* Container layer (Read/Write) - Like HDD
+
+### Volumes
+
+1. `docker volume create data_volume`: Creates a volume named `data_volume` in default docker host volumes directory: `/var/lib/docker/volumes` 
+
+1. `docker run -v data_volume:/var/lib/mysql mysql`: Mount `data_volume` to (:) `/var/lib/mysql` in the newly created `mysql` cotainer
+   - `/var/lib/mysql` is the default location where mysql stores data
+   - When the new container from `mysql` image is created, the newly created volume `data_volume` is mounted to this new container's folder
+   - Even if the container is destroyed, the data is still retained in the volume
+   - aka Volume Mounting
+
+1. `docker run -v /data/mysql:/var/lib/mysql mysql`: Mount volume in custom directory in host `/data/mysql` to (:) `/var/lib/mysql` in the newly created `mysql` cotainer 
+   - aka Bind Mounting, where a directory from any location on the docker host (not volume folder) is mounted to a new container
+
+1. `docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql`: New, more verbose way of writing the above command
+   - source: denote location on host
+   - target: denote location on container
+
+1. Docker uses storage drivers ( AUF, ZFS, Device Mapper, etc) for mountings. Storage drivers are OS dependent.
+---
+
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
