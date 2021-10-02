@@ -216,7 +216,7 @@ docker run \
 -d kodekloud/simple-webapp-mysql    \\set image to use
 ```
 
-**Docker Storage**
+## Docker Storage
 
 * Image Layer(Read Only) - Like ROM
 * Container layer (Read/Write) - Like HDD
@@ -240,7 +240,7 @@ docker run \
 
 1. Docker uses storage drivers ( AUF, ZFS, Device Mapper, etc) for mountings. Storage drivers are OS dependent.
 
-### Docker Compose
+## Docker Compose
 
 1. `docker-compose up docker-compose.yml`: Used to combine multiple commands to set up apps, db, etc instead of running multi single line commands
 
@@ -257,6 +257,26 @@ version: '3.0'                      //docker-compose.yml version
 ```
 
 3. Type `docker-compose -up docker-compose.yml` to run the `yml` file
+
+## Docker Registry
+
+1. `docker login private-registry.io`: Login to registry
+
+2. `docker run private-registry.io/apps/internalapp`: Run private registry as part of image name
+
+3. `docker run -d -p 5000:5000 --name registry registry:2`: Run custom image `registry` on `port:5000`.
+
+   *Note - docker registry is available as a Docker image. Image name:`registry`, exposes API on `port:5000`*
+
+4. `docker image tag my-image localhost:5000/my-image`: tag `my-image` with private registry url `localhost:5000/my-image`. 
+
+   *Note that since the image is running on the same docker host, we can use `localhost` on port `5000` followed by image name `my-image`*
+
+5. `docker push localhost:5000/my-image`: Push image to private registry
+
+6. `doker pull localhost:5000/my-image` Pull image from anywhere on the same network/same host using
+
+6. `docker pull 192.168.56.100:5000/my-image` Pull image from the IP or domain name (if user accessing from another host in the network environment)
 
 ---
 
