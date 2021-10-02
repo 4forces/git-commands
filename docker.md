@@ -241,6 +241,25 @@ docker run \
    - target: denote location on container
 
 1. Docker uses storage drivers ( AUF, ZFS, Device Mapper, etc) for mountings. Storage drivers are OS dependent.
+
+### Docker Compose
+
+1. `docker-compose up docker-compose.yml`: Used to combine multiple commands to set up apps, db, etc instead of running multi single line commands
+
+1.  Example of `docker-compose.yml` file:
+```docker
+services:
+  redis:                            //name of container 1
+    image: redis:alpine             //image to use
+  clickcounter:                     //name of container 2
+    image: kodekloud/click-counter  
+    ports:
+    - 8085:5000                     //hostport:containerport
+version: '3.0'                      //docker-compose.yml version
+```
+
+3. Type `docker-compose -up docker-compose.yml` to run the `yml` file
+
 ---
 
 * [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
