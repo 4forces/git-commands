@@ -32,9 +32,7 @@ docker push
 
 `docker inspect [container_name/id]`: view details of container like "id", "state", "mounts", etc
 
-* [Reference 1: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
-
-* [Reference 2: Edureka](https://www.edureka.co/blog/docker-commands/#rmi)
+* All contents from [reference 1: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org) and [reference 2: Edureka](https://www.edureka.co/blog/docker-commands/#rmi)
 
 ## docker run
 
@@ -262,4 +260,4 @@ version: '3.0'                      //docker-compose.yml version
 
 ---
 
-* [Reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
+* All contents from [reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
