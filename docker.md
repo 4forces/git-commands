@@ -278,6 +278,24 @@ version: '3.0'                      //docker-compose.yml version
 
 6. `docker pull 192.168.56.100:5000/my-image` Pull image from the IP or domain name (if user accessing from another host in the network environment)
 
+## Docker Engine
+
+Docker engine consists of:
+   1. Docker CLI 
+      - Docker CLI can be on a different machine.
+         - E.g. 1. To connect to remote docker engine at address `remote-docker-engine` and port `2375`, type `docker -H=remote-docker-engine:2375`
+         - E.g. 2. To a container based on `nginx` on a remote Docker host, type `docker -H=10.123.2.1:2375 run nginx`
+   2. REST API
+   3. Docker daemon
+
+### Resource management for Docker containers
+
+Docker uses *cgroups* to manage hardware resources
+
+   - `docker run --cpus=.5 ubuntu`: Use maximum 50% CPU
+
+   - `docker run --memory=100m ubuntu`: Use maximum 100 MB memory
+
 ---
 
 * All contents from [reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
