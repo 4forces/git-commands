@@ -300,7 +300,7 @@ Docker uses *cgroups* to manage hardware resources
 
 - Tools/scripts to help hosts docker containers
 
-- `docker service create --replicas=100 nodejs`: Docker swarm cmd to create 100 instances fo `nodejs`
+- `docker service create --replicas=100 nodejs`: Docker swarm cmd to create 100 instances of `nodejs`
 
 - instances scaling according to demand
 
@@ -308,7 +308,56 @@ Docker uses *cgroups* to manage hardware resources
 
 - networking and storage management, etc between different containers in different hosts
 
+- Load balancing between systems and HW
+
 - Examples: docker swarm, kubernetes, Mesos
+
+## docker swarm
+
+- Swarm setup: Designate Swarm Manager and Workers
+
+-  `docker swarm init` to init swarm manager
+
+- `docker swarm join --token [token]` to connect *workers* to the *swarm manager*, after which they are called to *nodes*
+
+- Examples to initiate docker service qirh  port and network config:
+   - `docker service create --replicas=3 my-web-server`
+   - `docker service create --replicas=3 -p 8080:80 my-web-server`
+   - `docker service create --replicas=3 --network frontend my-web-server`
+
+## Kubernetes
+
+- `kubectl run --replicas=1000 my-web-server`: Run 1000 instances
+
+- `kubectl scale --replicas=2000 my-web-server`: Scale up to 2000 instances based on user load
+
+- `kubectl rolling-update my-web-server --image=web-server:2`: Run in rolling update one at a time. Possible to roll back images if encounter issues
+
+- Upgrade a portion of nodes for testing
+
+- *Cluster*: A set of nodes
+
+- *Master*: Responsible for Worker nodes management
+
+- Components installed:
+   - **API Server**: Frontend interfaces and CLI where users talk to the API server to interact with kubernetes server
+   - **etcd server**: Distributed key:value store to store all data used in managing the cluster
+   - **scheduler**: distributes work eween containers across multiple nodes, assigns created containers to nodes
+   - **kubelet service**: agent which runs in each node in the cluster
+   - **container runtime** engine (like docker): The 'brain' of 
+   - **controller**: notices and responds when nodes/containers/endpoints shutdown
+   - **scheduler**: distributes work across multiple nodes
+
+### kubectlj
+
+- `kubectl run hello-minikube`: deploy application on cluster
+
+- `kubectl cluster-info`: view information about cluster
+
+- `kubectl get nodes`: list all nodes that are part of cluster
+
+- `kubectl run my-web-app --image=my-web-app --replicas=100`: run multiple instance of app across multiple nodes
+
 ---
 
 * All contents from [reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
