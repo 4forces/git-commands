@@ -282,7 +282,7 @@ version: '3.0'                      //docker-compose.yml version
 
 Docker engine consists of:
    1. Docker CLI 
-      - Docker CLI can be on a different machine.
+      - Docker CLI can be on a different machine
          - E.g. 1. To connect to remote docker engine at address `remote-docker-engine` and port `2375`, type `docker -H=remote-docker-engine:2375`
          - E.g. 2. To a container based on `nginx` on a remote Docker host, type `docker -H=10.123.2.1:2375 run nginx`
    2. REST API
@@ -296,6 +296,19 @@ Docker uses *cgroups* to manage hardware resources
 
    - `docker run --memory=100m ubuntu`: Use maximum 100 MB memory
 
+## Container Orchestration
+
+- Tools/scripts to help hosts docker containers
+
+- `docker service create --replicas=100 nodejs`: Docker swarm cmd to create 100 instances fo `nodejs`
+
+- instances scaling according to demand
+
+- additional host to super user load
+
+- networking and storage management, etc between different containers in different hosts
+
+- Examples: docker swarm, kubernetes, Mesos
 ---
 
 * All contents from [reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
