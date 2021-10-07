@@ -369,10 +369,13 @@ The structure is:
 # for …variable… in …list… ; do …body… ; done
 for filetype in gif jpg png; do echo $filetype; done
 ```
+29. `ip addr show`: Shows IP addresses and related devices and info
+    - `ipaddress add 192.168.1.10/24 dev eth0` set [ip_address]/[subnet_mask] dev [device_name]
 
 ### References:
 1. [Code Institute](https://codeinstitute.net/)
 2. [DataCamp](https://www.datacamp.com/)
+3. [FCC](https://www.youtube.com/watch?v=Wvf0mBNGjXY&t=3369s&ab_channel=freeCodeCamp.org)
 ---
 
 
