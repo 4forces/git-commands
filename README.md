@@ -369,14 +369,29 @@ The structure is:
 # for …variable… in …list… ; do …body… ; done
 for filetype in gif jpg png; do echo $filetype; done
 ```
-### For CentOS
-1. `ip addr show`: Shows IP addresses and related devices and info
+### Networking
+1. `ifconfig` and `ip addr show`: Shows IP addresses and related devices and info
 
-2. `ipaddress add 192.168.1.10/24 dev eth0`: Set [ip_address]/[subnet_mask] dev [device_name]
+1. `ssh 127.0.0.1 -p 2222`: **Port Forwarding:** ssh via loop back - `127.0.0.1` through port `2222`. Usually only used if Host IP Address is not known (?)
+
+1. `systemctl status ssh`: Check ssh daemon running
+
+3. `service ssh start`: Start SSH daemon
+#### CentOS
+1. `ipaddress add 192.168.1.10/24 dev eth0`: Set [ip_address]/[subnet_mask] dev [device_name]
 
 3. `service sshd status`: Check if SSH daemon is running
     - `service sshd start`: Start SSH daemon
 
+#### VBox Network Types
+
+VMs can connect to internet/other devices in network|VMs can reach other|Host can reach VM w/o Port Fwd | Devices in network can reach VM | Type
+-|-|-|-|-
+Yes|No|No|No|NAT
+Yes|Yes|No|No|NAT Network
+No|Yes|Yes|No|Host Network
+Yes|Yes|Yes|No|Host Network + NAT
+Yes|Yes|Yes|Yes|Bridged
 ## References:
 1. [Code Institute](https://codeinstitute.net/)
 2. [DataCamp](https://www.datacamp.com/)
