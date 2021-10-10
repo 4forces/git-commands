@@ -370,18 +370,58 @@ The structure is:
 for filetype in gif jpg png; do echo $filetype; done
 ```
 ### Networking
+
+#### Networking Commands
 1. `ifconfig` and `ip addr show`: Shows IP addresses and related devices and info
+
+1. `ip addr`: See IP addresses assigned to interface.
+
+1. `ip link`: View and modify network interfaces for the host system
 
 1. `ssh 127.0.0.1 -p 2222`: **Port Forwarding:** ssh via loop back - `127.0.0.1` through port `2222`. Usually only used if Host IP Address is not known (?)
 
 1. `systemctl status ssh`: Check ssh daemon running
 
 3. `service ssh start`: Start SSH daemon
-#### CentOS
-1. `ipaddress add 192.168.1.10/24 dev eth0`: Set [ip_address]/[subnet_mask] dev [device_name]
+
+#### Terms
+1. Switch: Connects systems/devices to form a network
+1. Router: Connects networks
+1. Gateway: 'Door' to the outside world: other networks/internet. ('Door' where each network is a room)
+   - `route`: see routing configurations / view routing table
+   - `ip route add 192.168.2.0/24 via 192.168.1.1`: Add network `192.168.2.0` via gateway `192.168.1.1`
+   - `ip route add default via 192.168.1.1` or `ip route add 0.0.0.0 via 192.168.1.1`: If IP is not within internal network, route to gateway 192.168.1.1 as default (0.0.0.0)
+
+#1. Set up Linux Host as Router:
+```
+// In a system acting as the 'router' between 2 networks,
+// to enable both the networks to talk to each other.
+// (disabled by default for security reasons)
+// does not persist after reboot
+
+cat /proc/sys/net/ipv4/ip_forward
+1 // enabled:1, disabled:0
+```
+
+To persist settings, in `/etc/sysctl.conf`
+```
+...
+net.ipv4.ip_forward = 1
+...
+```
+
+##### CentOS
+1. `ipaddress add 192.168.1.10/24 dev eth0`: Set [ip_address]/[subnet_mask] dev [device_name]/[network_interface]
+   - To persist, indicate in `/etc/network/interfaces`
 
 3. `service sshd status`: Check if SSH daemon is running
     - `service sshd start`: Start SSH daemon
+
+#### Tools to test DNS Resolution (other than ping)
+
+4. `nslookup www.google.com`:  Another tool to test name resolution (does not consider hostname entries in local 'etc/host/')
+
+5. `dig www.google.com`: Returns more name resolution details as stored on the server
 
 #### VBox Network Types
 
@@ -392,6 +432,51 @@ Yes|Yes|No|No|NAT Network
 No|Yes|Yes|No|Host Network
 Yes|Yes|Yes|No|Host Network + NAT
 Yes|Yes|Yes|Yes|Bridged
+
+#### DNS
+- **Name resolution**
+```
+// tells current system that 192.168.1.11 is aka db
+
+cat >> /etc/hosts
+192.168.1.11   db
+
+// tells system that 192.168.1.111 is google
+
+cat >> /etc/hosts
+192.168.1.111  www.google.com
+```
+
+- A **DNS Server** keeps a central list of IP Address:Hostname (easier management)
+   - All system checks with DNS Server instead for which hostname has which IP
+```
+// pointing each system to the DNS Server (192.168.1.100)
+
+cat /etc/resolv.conf
+nameserver     192.168.1.100
+```
+```
+// pointing to google nameserver (8.8.8.8)
+
+cat >> /etc/resolv.conf
+nameserver     192.168.1.100
+nameserver     8.8.8.8
+```
+```
+// indicating the appended domain name
+// for e.g. when we type "web", "mycompany.com" will be appended to become "web.mycompany.com" or "web.prod.mycompany.com"
+// for internal networks
+
+cat >> /etc/resolv.conf
+nameserver     192.168.1.100
+search         mycompany.com prod.mycompany.com
+```
+
+### Record Types
+- A Record: Map hostname to IP-server
+- AAAA Record: Map hostname to IPV6-server
+- CNAME Record: Map hostname to hostname
+
 ## References:
 1. [Code Institute](https://codeinstitute.net/)
 2. [DataCamp](https://www.datacamp.com/)
