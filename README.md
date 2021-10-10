@@ -471,6 +471,31 @@ cat >> /etc/resolv.conf
 nameserver     192.168.1.100
 search         mycompany.com prod.mycompany.com
 ```
+#### IP Addresses and Ports
+
+- A host system running flask webapp has 2 IPs via 2 network interfaces:
+   - `10.0.2.16` (wlp0s2)
+   - `10.0.1.15` (enp0s3)
+
+- For system to listen via 2 IPs, set `hosts='0.0.0.0'`:
+
+```python
+# main.py
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello():
+      return 'Hello, World!'
+
+if __name__=='__main__':
+      app.run(port=8000, host='0.0.0.0')
+      # 0.0.0.0: listens on 10.0.2.15:8000 and 10.0.2.16:8000
+      # by default, Flask listens on port 5000 and host 127.0.0.1 if none specified
+```
+
+- **Internal loopback interface**: To access the system by itself: `http://127.0.0.1:8000` or `http://localhost:8000`
+   - 127.0.0.1 = localhost
+   - same as referring to 'self'
 
 ### Record Types
 - A Record: Map hostname to IP-server
