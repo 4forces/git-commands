@@ -361,5 +361,3 @@ Docker uses *cgroups* to manage hardware resources
 ---
 
 * All contents from [reference: FCC](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=914s&ab_channel=freeCodeCamp.org)
-
-testcoment
