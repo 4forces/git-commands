@@ -40,15 +40,15 @@ docker push
 
 *A container only exists as long as the process inside is alive. If the web service inside the container is stopped or crashed, the container exits.*
 
-`docker run ubuntu sleep 5`: Run ubuntu with a sleep command for 5s.
+`docker run ubuntu sleep 5`: Run ubuntu with a sleep command for 5s. 
 
-*The container running the Ubuntu image will be alive as long as the sleep command is active. The container will close after sleep command exits*
+*The container running the Ubuntu image will be alive as long as the sleep command is active. The container will close after sleep command exits* 
 
 `docker run [image]:4.0`: ‘4.0’ refers to tag (version). Default is ‘latest’ tag
 
-`docker run -d [image]`: Run container in detached (background) mode. Container will not take over console, leaving it for user inputs.
+`docker run -d [image]`: Run container in detached (background) mode. Container will not take over console, leaving it for user inputs. 
 
-`docker attach [container_id]`: Runs the container in attached mode (foreground) in terminal.
+`docker attach [container_id]`: Runs the container in attached mode (foreground) in terminal. 
 
 `docker run -i`: interactive mode, allows user interaction
 
@@ -60,7 +60,7 @@ docker push
 *E.g. `.0.0.0:3456->3456/tcp, 0.0.0.0:38080->80/tcp` - ports published on hosts -> ports exposed*
 
 
-`docker run -v [/local_data_dir_path]:[/container_data_dir_path] [image]`: maps container 'data folder' to local folder. This is for data retention as data folder is destroyed when container is deleted.
+`docker run -v [/local_data_dir_path]:[/container_data_dir_path] [image]`: maps container 'data folder' to local folder. This is for data retention as data folder is destroyed when container is deleted. 
 
 ## Environment Variables
 
@@ -71,7 +71,7 @@ An example of setting the env variable in the .py and running it from docker:
 import os
 from flask import Flask
 
-color = os.environ.get('APP_COLOR') # previously color = "red"
+color = os.environ.get('APP_COLOR') # previously color = "red" 
 ```
 ```
 // run following commands (in console?) to apply color = blue
@@ -91,12 +91,12 @@ export APP_COLOR=blue; python app.py
 FROM Ubuntu // defines base OS for container
 
 Run apt-get update // runs commands on the image, for e.g apt-get update, install python, etc
-RUN apt-get install python
+RUN apt-get install python 
 
 RUN pip install flask
 RUN pip install flask-mysql
 
-COPY . /opt/source-code // copy everything to the folder in the image
+COPY . /opt/source-code // copy everything to the folder in the image 
 
 ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run // specifies a command to run when the image is build in the container
 ```
@@ -137,7 +137,7 @@ FROM Ubuntu
 ENTRYPOINT ["sleep"] // command to run at start
 ```
 
-Run with variable: `docker run ubuntu-sleeper 10` - Command at Startup: sleep 10
+Run with variable: `docker run ubuntu-sleeper 10` - Command at Startup: sleep 10 
 ('10' is user input, 'sleep' from ENTRYPOINT)
 
 **Specify a default CMD with optional ENTRYPOINT**
@@ -151,7 +151,7 @@ CMD ["5"] // 5 will be default argument if no user input. Must be in JSON format
 ```
 
 **Overwrite the original sleep CMD with newly created sleep2.0 ENTRYPOINT CMD**
-`docker run --entrypoint sleep2.0 ubuntu-sleeper 10`:
+`docker run --entrypoint sleep2.0 ubuntu-sleeper 10`: 
 The final command at startup will be `sleep2.0 10`
 
 ## Networking
@@ -191,7 +191,7 @@ docker inspect [Id/Name]
 ```
 **Embedded DNS**
 * Docker runs a DNS Server internally in the host at IP 127.0.0.1
-* Use the container name to to connect containters (for e.g web container to mysql DB container), NOT the IP which will be dynamic every session.
+* Use the container name to to connect containters (for e.g web container to mysql DB container), NOT the IP which will be dynamic every session. 
 
 **Examples**
 ```
@@ -223,7 +223,7 @@ docker run \
 
 ### Volumes
 
-1. `docker volume create data_volume`: Creates a volume named `data_volume` in default docker host volumes directory: `/var/lib/docker/volumes`
+1. `docker volume create data_volume`: Creates a volume named `data_volume` in default docker host volumes directory: `/var/lib/docker/volumes` 
 
 1. `docker run -v data_volume:/var/lib/mysql mysql`: Mount `data_volume` to (:) `/var/lib/mysql` in the newly created `mysql` cotainer
    - `/var/lib/mysql` is the default location where mysql stores data
@@ -231,7 +231,7 @@ docker run \
    - Even if the container is destroyed, the data is still retained in the volume
    - aka Volume Mounting
 
-1. `docker run -v /data/mysql:/var/lib/mysql mysql`: Mount volume in custom directory in host `/data/mysql` to (:) `/var/lib/mysql` in the newly created `mysql` cotainer
+1. `docker run -v /data/mysql:/var/lib/mysql mysql`: Mount volume in custom directory in host `/data/mysql` to (:) `/var/lib/mysql` in the newly created `mysql` cotainer 
    - aka Bind Mounting, where a directory from any location on the docker host (not volume folder) is mounted to a new container
 
 1. `docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql`: New, more verbose way of writing the above command
@@ -240,7 +240,7 @@ docker run \
 
 1. Docker uses storage drivers ( AUF, ZFS, Device Mapper, etc) for mountings. Storage drivers are OS dependent.
 
-## Docker Compose (Uses yaml)
+## Docker Compose
 
 1. `docker-compose up docker-compose.yml`: Used to combine multiple commands to set up apps, db, etc instead of running multi single line commands
 
@@ -250,7 +250,7 @@ services:
   redis:                            //name of container 1
     image: redis:alpine             //image to use
   clickcounter:                     //name of container 2
-    image: kodekloud/click-counter
+    image: kodekloud/click-counter  
     ports:
     - 8085:5000                     //hostport:containerport
 version: '3.0'                      //docker-compose.yml version
@@ -268,7 +268,7 @@ version: '3.0'                      //docker-compose.yml version
 
    *Note - docker registry is available as a Docker image. Image name:`registry`, exposes API on `port:5000`*
 
-4. `docker image tag my-image localhost:5000/my-image`: tag `my-image` with private registry url `localhost:5000/my-image`.
+4. `docker image tag my-image localhost:5000/my-image`: tag `my-image` with private registry url `localhost:5000/my-image`. 
 
    *Note that since the image is running on the same docker host, we can use `localhost` on port `5000` followed by image name `my-image`*
 
@@ -281,7 +281,7 @@ version: '3.0'                      //docker-compose.yml version
 ## Docker Engine
 
 Docker engine consists of:
-   1. Docker CLI
+   1. Docker CLI 
       - Docker CLI can be on a different machine
          - E.g. 1. To connect to remote docker engine at address `remote-docker-engine` and port `2375`, type `docker -H=remote-docker-engine:2375`
          - E.g. 2. To a container based on `nginx` on a remote Docker host, type `docker -H=10.123.2.1:2375 run nginx`
@@ -344,7 +344,7 @@ Docker uses *cgroups* to manage hardware resources
    - **etcd server**: Distributed key:value store to store all data used in managing the cluster
    - **scheduler**: distributes work eween containers across multiple nodes, assigns created containers to nodes
    - **kubelet service**: agent which runs in each node in the cluster
-   - **container runtime** engine (like docker): The 'brain' of
+   - **container runtime** engine (like docker): The 'brain' of 
    - **controller**: notices and responds when nodes/containers/endpoints shutdown
    - **scheduler**: distributes work across multiple nodes
 
