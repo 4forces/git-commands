@@ -4,9 +4,14 @@
 
 ### GENERAL STEPS
 1. git add
-   - `git add .`: add all files that has been changed
+   - `git add .`: add all files that has been changed in current folder only.
 2. `git commit -m "message"`
 3. `git push`
+
+***Notes:***
+1. `git commit -a -m`: Adds and commit changes to already track files in 1 step
+1. `git commit add -A`: Adds all files in all folders
+
 
 ### STAGING
 1. `git add hello.txt`: stages hello.txt
@@ -24,14 +29,15 @@
 1. `git log`: shows commit history
 
 ### RETURN TO COMMIT STATE:
-1. `git reset --hard f27e1c`: discard local changes and resets file to version/state at SHA "f27e1c"
-great way to reset accidental commits and revert to previous versions
+1. `git reset --hard f27e1c`: discard local changes and resets file to version/state at SHA "f27e1c" great way to reset accidental commits and revert to previous versions
+   - `git reset --hard origin/main`: Resets to origin/main
 
 ### AMEND LAST COMMIT
 1. `git commit --amend`: "updates" the most recent commit with the amended changes in code.
 
 ### DISCARDING CHANGES
-1. `git stash`: Discard all local changes, but save them for possible re-use later
+1. `git stash`: 'Saves' and 'puts aside' all changes for possible re-use later (for e.g. when your boss interrupts your work to work on something urgent. Works on local only and not remotes)
+   - `git stash pop`: 'Loads' back up all the 'saved' work you were working on. Use this when you can return to your interrupted work
 2. `git checkout -- <file>`: Discarding local changes (permanently) to a file
 3. `git reset --hard`: Discard all local changes to all files permanently
 
@@ -43,7 +49,7 @@ great way to reset accidental commits and revert to previous versions
 
 While `git reset` works great for local branches, its method of "rewriting history" doesn't work for remote branches.
 In order to reverse changes, and share those reversed changes with others, we need to use `git revert`
-1. `git revert HEAD`:Creates a new commit that "reverses or undoes" the latest commit.
+1. `git revert HEAD`:Creates a new commit that "reverses or undoes" the latest commit (can read more below)
 
 ### CLONE FROM SOMEONE'S REPOSITORY
 1. Open terminal (in VS Code)
@@ -265,7 +271,24 @@ git branch -u origin main <any_branch>
 
 This creates a new branch `<any_branch>` and sets this branch to track `origin main`.
 
+### Other Useful git commands
 
+1. `git config --global alias.addncomm '!git add -A && git commit -m'`:
+    - `alias` is used to create custom git commands (more [here](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases))
+    - `!git [command_1] && git [command_2]`: `!git` to chanin multiple commands
+
+2. `git revert [commit_hash]`: Undo specified commit, and adds a message to record this undo. To 'undo' reverts again, can use `cherry-pick` (more [here](https://stackoverflow.com/questions/8728093/how-do-i-un-revert-a-reverted-git-commit))
+   - `git revert HEAD`: Undo most recent commit (and records this undo)
+
+3. `git log --graph --oneline --decorate`: Displays log in nice visuals one line showing details of branches and tags etc. (more [here](https://www.atlassian.com/git/tutorials/git-log#:~:text=The%20%2D%2Ddecorate%20flag%20makes,that%20point%20to%20each%20commit.&text=This%20lets%20you%20know%20that,tip%20of%20the%20main%20branch.))
+
+4. `git log -S "[filename]"`: Search log for all commits related to `[filename]`
+
+5. `git branch -vv`: Shows detailed info about branch (incl commit sha and subject, heads location, relationship to upstream branch)
+
+6. `git bisect start`: Start binary search - Used for efficient debugging within commits. Helpful to pinpoint exact commit which bugs occurs
+   - `git bisect bad [commit_sha]`: Indicate the bug is in the commit_sha to start debug process. (Assumes most recent `[commit_sha]` if empty)
+   - `git bisect good [commit_sha]`: Indicate no bugs at commit_sha
 
 ---
 
@@ -274,6 +297,8 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 2. [Just git reset and push when you need to undo previous local commits](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-a-git-reset-and-push-to-remote-works-on-previous-local-commits)
 3. [Using Git in a team: a cheatsheet](https://jameschambers.co/git-team-workflow-cheatsheet/)
 4. [Learn Git Branching](https://learngitbranching.js.org/) and [solutions](https://github.com/saivittalb/learn-git-branching-solutions)
+5. [Webdev Simplified](https://www.youtube.com/watch?v=mnmYwRoSisg&t=481s&ab_channel=WebDevSimplified)
+
 
 ---
 
