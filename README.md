@@ -304,6 +304,12 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
 
 ## Unix Command Line Interface (CLI)
 
+1. `uname -a`: Show system and kernel
+1. `head -n1 /etc/issue`: Show distribution
+1. `mount`: Show mounted file systems
+1. `whoami`: Show username
+1. `man [command]`: Show manual for `[command]`
+1. `date`, `uptime`
 1. Press `tab` to auto-fill file/directory names
 1. Assign variables: `training=seasonal/summer.csv`
 2. `echo $x`: prints variable `x` to console
@@ -317,16 +323,8 @@ This creates a new branch `<any_branch>` and sets this branch to track `origin m
     ```shell
     history | tail -n 3 > steps.txt
     ```
-3. Re-run commands:
-```shell
-# open the script to add commans:
-nano dates.sh
-# type the command(s) to run, save and exit, for eg:
-cut -d , -f 1 seasonal/*.csv
-# bash <file>.sh to run:
-bash headers.sh
-```
-4. `$@`: Running commands with multiple files (google if unsure)
+
+8. `$@`: Running commands with multiple files (google if unsure)
 4. `cd ..` : chg directory `..` points to directory above current
    - e.g. `cd into /workspace/.pip-modules/lib/python3.7/site-packages/`: cd to 'sitepackages' folder (where packages are installed for python)
    - `cd -` : up one directory level
@@ -393,6 +391,16 @@ The structure is:
 ```shell
 # for …variable… in …list… ; do …body… ; done
 for filetype in gif jpg png; do echo $filetype; done
+```
+38. Re-run commands:
+
+```shell
+// open the script to add commans:
+nano dates.sh
+// type the command(s) to run, save and exit, for eg:
+cut -d , -f 1 seasonal/*.csv
+// bash <file>.sh to run:
+bash headers.sh
 ```
 ### Networking
 
@@ -531,6 +539,7 @@ if __name__=='__main__':
 1. [Code Institute](https://codeinstitute.net/)
 2. [DataCamp](https://www.datacamp.com/)
 3. [FCC](https://www.youtube.com/watch?v=Wvf0mBNGjXY&t=3369s&ab_channel=freeCodeCamp.org)
+3. [DevOps Roadmap](https://www.youtube.com/watch?v=9pZ2xmsSDdo&t=134s&ab_channel=TechWorldwithNana)
 ---
 
 
