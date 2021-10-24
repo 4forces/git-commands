@@ -417,6 +417,8 @@ bash headers.sh
 
 3. `service ssh start`: Start SSH daemon
 
+   ***Note:*** [Article](https://www.maketecheasier.com/show-active-ssh-connections-linux/) about checking ssh connections
+
 #### Terms
 1. Switch: Connects systems/devices to form a network
 1. Router: Connects networks
