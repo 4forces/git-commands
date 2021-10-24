@@ -10,7 +10,7 @@
 
 ***Notes:***
 1. `git commit -a -m`: Adds and commit changes to already track files in 1 step
-1. `git commit add -A`: Adds all files in all folders
+1. `git add -A`: Adds all files in all folders
 
 
 ### STAGING
