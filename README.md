@@ -33,7 +33,8 @@
    - `git reset --hard origin/main`: Resets to origin/main
 
 ### AMEND LAST COMMIT
-1. `git commit --amend`: "updates" the most recent commit with the amended changes in code.
+1. `git commit --amend`: "updates" the most recent commit with the amended (staged) changes in code.
+   -  `git commit --amend --no-edit`: Same as above, but with no option to amend commit message
 
 ### DISCARDING CHANGES
 1. `git stash`: 'Saves' and 'puts aside' all changes for possible re-use later (for e.g. when your boss interrupts your work to work on something urgent. Works on local only and not remotes)
